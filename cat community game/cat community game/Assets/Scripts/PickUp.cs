@@ -11,7 +11,11 @@ public class PickUp : MonoBehaviour
         {
             manager.PickUpItem();
 
-            transform.position = new Vector2(8, 9);
+            //reset the fish's position
+
+            float randomNumber = Random.Range(-2, -4);
+
+            transform.position = new Vector2(-30, randomNumber);
         }
     }
 }
