@@ -6,6 +6,7 @@ using TMPro;
 
 public class DialogueUI : MonoBehaviour
 {
+    [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TMP_Text textLabel;
     [SerializeField] private DialogueObject testDialogue;
 
@@ -14,6 +15,7 @@ public class DialogueUI : MonoBehaviour
     private void Start()
     {
         typewriterEffect = GetComponent<TypewriterEffect>();
+        CloseDialogueBox();
         //typewriterEffect = GetComponent<TypewriterEffect>();
         ShowDialogue(testDialogue);
         //textLabel.text = "hello";
@@ -22,6 +24,7 @@ public class DialogueUI : MonoBehaviour
 
     public void ShowDialogue(DialogueObject dialogueObject)
     {
+        dialogueBox.SetActive(true);
         StartCoroutine(routine: StepThroughDialouge(dialogueObject));
     }
 
@@ -30,6 +33,17 @@ public class DialogueUI : MonoBehaviour
         foreach(string dialogue in dialogueObject.Dialogue)
         {
             yield return typewriterEffect.Run(dialogue, textLabel);
+            //
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         }
+
+        CloseDialogueBox();
+    }
+
+    private void CloseDialogueBox()
+    {
+        dialogueBox.SetActive(false);
+        textLabel.text = string.Empty;
+
     }
 }
