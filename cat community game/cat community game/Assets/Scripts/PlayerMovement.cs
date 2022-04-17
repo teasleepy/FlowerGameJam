@@ -19,14 +19,8 @@ public class PlayerMovement : MonoBehaviour
     {
         body.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.velocity.y);
 
-        //if(Input.GetKeyDown(KeyCode.S))
-        //{
-        //  Save();
-        //}
+     
     }
 
-    //private void Save()
-    //{
-    //File.WriteAllText(Application.dataPath + "/save.txt", "test/n");
-    //}
+    
 }
